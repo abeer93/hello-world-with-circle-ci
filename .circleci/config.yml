@@ -20,11 +20,13 @@ jobs:
   print-hello:
     docker:
       - image: cimg/node:lts
+        environment:
+          MY_NAME_VAR: Bery
     steps:
       - checkout
       - run: 
           name: "SAY HELLO TO BERY"
-          command: "echo HELLO, BERY" 
+          command: "echo HELLO, $MY_ENV_VAR" 
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
