@@ -17,6 +17,14 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+  print-hello:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - run: 
+          name: "SAY HELLO TO BERY"
+          command: "echo HELLO, BERY" 
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -24,3 +32,7 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+      - print-hello:
+          requires:
+            - say-hello
+
