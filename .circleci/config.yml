@@ -21,10 +21,28 @@ jobs:
     docker:
       - image: cimg/node:lts
     steps:
-      - checkout
       - run: 
           name: "SAY HELLO TO BERY"
           command: "echo HELLO, $MY_NAME_VAR" 
+  save-hello-world-output:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - run: 
+          name: "SAY HELLO TO BERY"
+          command: echo "SAY HELLO TO BERY" > ~/helloOutput.txt
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - helloOutput.txt
+  print-hello-from-output:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: cat ~/helloOutput.txt
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -35,4 +53,9 @@ workflows:
       - print-hello:
           requires:
             - say-hello
+      - save-hello-world-output
+      - print-hello-from-output:
+          requires:
+            - save-hello-world-output
+
 
