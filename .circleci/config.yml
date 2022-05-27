@@ -27,7 +27,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["33:28:b7:ca:8f:9c:64:6c:3b:2d:78:fb:17:2d:2a:90"] # You can get this ID in the section where you registered the SSH Key
+          fingerprints: ["c8:c3:e5:ba:76:a2:65:f9:3a:41:88:97:d2:ac:8f:52"] # You can get this ID in the section where you registered the SSH Key
       - run:
           name: Install dependencies
           command: |
@@ -42,4 +42,4 @@ workflows:
   # Name the workflow
   myWorkflow:
     jobs:
-      - create_infrastructure
+      - configure_infrastructure
