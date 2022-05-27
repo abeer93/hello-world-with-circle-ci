@@ -37,7 +37,7 @@ jobs:
       - run:
           name: Configure server
           command: |
-            ansible-playbook -i inventory.txt main.yml --private-key=circleCiKeyPair.pem
+            ansible-playbook -i inventory.txt main.yml
 # Sequential workflow
 workflows:
   # Name the workflow
